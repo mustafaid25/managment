@@ -1,3 +1,17 @@
+/* Variables for easier theme management (Optional but good practice for modern CSS) */
+:root {
+    --primary-dark: #263238; /* Deep Blue-Gray */
+    --accent-blue: #4285F4;  /* Google Blue */
+    --light-bg: #f8f9fa;    /* Very Light Gray */
+    --white: #ffffff;
+    --text-color: #495057;   /* Dark Gray for body text */
+    --heading-color: #2c3e50; /* Slightly darker for headings */
+    --border-color: #e0e0e0; /* Light border */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+}
+
+
 /* Basic Reset & Typography */
 * {
     margin: 0;
@@ -7,156 +21,206 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
+    line-height: 1.7; /* Slightly increased line height for readability */
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1280px; /* Slightly wider container */
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 30px 0; /* More vertical padding */
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #2c3e50;
-    margin-bottom: 15px;
+h1, h2, h3, h4 {
+    color: var(--heading-color);
+    margin-bottom: 20px; /* More space below headings */
+    font-weight: 700; /* Bolder headings */
 }
 
 p {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* More space below paragraphs */
 }
 
 a {
     text-decoration: none;
-    color: #3498db;
+    color: var(--accent-blue);
+    transition: color 0.3s ease; /* Smooth transition for links */
 }
 
 a:hover {
-    color: #2980b9;
+    color: #3367d6; /* Slightly darker accent on hover */
 }
 
 /* Header & Navigation */
 .header {
-    background: #2c3e50;
-    color: #fff;
-    padding: 1rem 0;
-    border-bottom: 3px solid #3498db;
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 1.2rem 0; /* Increased padding */
+    box-shadow: 0 2px 8px var(--shadow-medium); /* Subtle shadow */
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000;
 }
 
 .header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0; /* Remove container padding here, use header padding */
 }
 
 .logo a {
-    color: #fff;
-    font-size: 1.8rem;
+    color: var(--white);
+    font-size: 2rem; /* Larger logo */
     font-weight: 700;
+    letter-spacing: 0.5px; /* Slight letter spacing for logo */
 }
 
 .navbar ul {
     list-style: none;
+    display: flex; /* Use flex for nav items */
 }
 
 .navbar ul li {
-    display: inline;
-    margin-left: 25px;
+    margin-left: 35px; /* Increased space between nav items */
 }
 
 .navbar ul li a {
-    color: #fff;
-    font-weight: 400;
+    color: var(--white);
+    font-weight: 500; /* Medium font weight */
     padding: 5px 0;
-    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+    position: relative; /* For underline effect */
+}
+
+.navbar ul li a::after { /* Modern underline effect */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-blue);
+    transition: width 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
 }
 
 .navbar ul li a:hover {
-    color: #3498db;
-    border-bottom: 2px solid #3498db;
+    color: var(--accent-blue); /* Text color changes on hover */
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1500x700/007bff/ffffff?text=Plastic+Manufacturing') no-repeat center center/cover;
-    color: #fff;
+    background: linear-gradient(rgba(38, 50, 56, 0.7), rgba(38, 50, 56, 0.7)), url('https://via.placeholder.com/1600x800/263238/ffffff?text=Modern+Plastic+Solutions') no-repeat center center/cover;
+    color: var(--white);
     text-align: center;
-    padding: 100px 0;
-    min-height: 500px;
+    padding: 120px 0; /* More vertical padding */
+    min-height: 600px; /* Taller hero section */
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden; /* For potential future animations */
+}
+
+.hero::before { /* Subtle background pattern (optional modern touch) */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--primary-dark) 5%, transparent 5%);
+    background-size: 20px 20px;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2; /* Ensure content is above pseudo-element */
 }
 
 .hero h2 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 4rem; /* Larger hero heading */
+    margin-bottom: 25px;
+    color: var(--white);
+    text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    max-width: 800px;
+    font-size: 1.5rem; /* Larger hero paragraph */
+    margin-bottom: 40px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .btn {
     display: inline-block;
-    background: #3498db;
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out, transform 0.2s ease;
+    background: var(--accent-blue);
+    color: var(--white);
+    padding: 15px 35px; /* More padding for buttons */
+    border-radius: 8px; /* Slightly more rounded */
+    transition: background 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.3s ease;
     font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase; /* Uppercase buttons */
+    box-shadow: 0 4px 8px var(--shadow-light); /* Subtle shadow */
 }
 
 .btn:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
+    background: #3367d6; /* Darker accent on hover */
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 6px 12px var(--shadow-medium);
 }
 
 /* Section Styling */
 section {
-    padding: 60px 0;
-    background-color: #fff;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 80px 0; /* More vertical padding for sections */
+    background-color: var(--white);
+    margin-bottom: 30px; /* More space between sections */
+    border-radius: 12px; /* Rounded corners for sections */
+    box-shadow: 0 4px 15px var(--shadow-light); /* Softer, larger shadow */
+    border: 1px solid var(--border-color); /* Subtle border */
 }
 
 section:nth-of-type(even) {
-    background-color: #f9f9f9;
+    background-color: var(--light-bg); /* Use light-bg for even sections */
 }
 
 section h3 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+    font-size: 3rem; /* Larger section headings */
+    margin-bottom: 50px; /* More space below section heading */
     position: relative;
+    color: var(--heading-color);
 }
 
 section h3::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px; /* Adjusted position */
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: #3498db;
+    width: 80px; /* Wider underline */
+    height: 4px; /* Thicker underline */
+    background-color: var(--accent-blue);
+    border-radius: 2px; /* Rounded ends for underline */
 }
-
 
 /* About Us Section */
 .about-us p {
-    font-size: 1.1rem;
+    font-size: 1.15rem; /* Slightly larger text */
     text-align: justify;
-    max-width: 900px;
+    max-width: 1000px; /* Wider text block */
     margin-left: auto;
     margin-right: auto;
 }
@@ -164,142 +228,213 @@ section h3::after {
 /* Products Section */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly larger min-width for products */
+    gap: 40px; /* Increased gap */
     text-align: center;
 }
 
 .product-item {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: var(--white);
+    padding: 35px; /* More padding */
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 6px 15px var(--shadow-light); /* Softer shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color); /* Subtle border */
 }
 
 .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    transform: translateY(-8px); /* More pronounced lift */
+    box-shadow: 0 10px 25px var(--shadow-medium); /* More intense shadow on hover */
 }
 
 .product-item .product-icon {
-    font-size: 3.5rem;
-    color: #3498db;
-    margin-bottom: 20px;
+    font-size: 4rem; /* Larger icons */
+    color: var(--accent-blue);
+    margin-bottom: 25px;
+}
+
+.product-item .product-img {
+    max-width: 100%;
+    height: 200px; /* Fixed height for product images */
+    object-fit: contain; /* Ensure image fits without cropping, maintaining aspect ratio */
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px var(--shadow-light);
 }
 
 .product-item h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
+    font-size: 1.6rem; /* Larger product title */
+    margin-bottom: 12px;
+    color: var(--heading-color);
 }
 
 .product-item p {
-    font-size: 1rem;
+    font-size: 1.05rem; /* Slightly larger product description */
     color: #555;
 }
 
 /* Contact Us Section */
 .contact-us .contact-info {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
+    margin-bottom: 40px; /* More space */
+    font-size: 1.2rem; /* Larger text */
 }
 
 .contact-us .contact-info p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .contact-us .contact-info i {
-    margin-right: 10px;
-    color: #3498db;
+    margin-right: 12px;
+    color: var(--accent-blue);
+    font-size: 1.3rem; /* Larger icons */
 }
 
 .contact-form {
-    max-width: 600px;
+    max-width: 700px; /* Wider form */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Increased gap between fields */
+    padding: 30px; /* Padding inside the form */
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px; /* More padding */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* More rounded */
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2); /* Focus ring effect */
 }
 
 .contact-form textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 150px; /* Taller text area */
 }
 
 .contact-form button.btn {
-    width: 100%;
-    cursor: pointer;
-    border: none;
-    font-size: 1.1rem;
+    width: auto; /* Allow button to size itself */
+    align-self: flex-end; /* Align button to the right */
+    padding: 15px 40px; /* Adjust padding for button */
 }
 
 /* Footer */
 .footer {
-    background: #2c3e50;
-    color: #fff;
+    background: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.85); /* Slightly muted white */
     text-align: center;
-    padding: 25px 0;
-    margin-top: 20px;
-    font-size: 0.9rem;
+    padding: 30px 0; /* More padding */
+    margin-top: 40px; /* More space from last section */
+    font-size: 1rem;
+    border-top: 3px solid var(--accent-blue);
 }
 
-/* Responsive Design */
+/* Responsive Design Adjustments for Modern Look */
+@media (max-width: 1024px) {
+    .hero h2 {
+        font-size: 3.2rem;
+    }
+    .hero p {
+        font-size: 1.3rem;
+    }
+    section h3 {
+        font-size: 2.5rem;
+    }
+    .product-grid {
+        gap: 30px;
+    }
+}
+
 @media (max-width: 768px) {
     .header .container {
         flex-direction: column;
         text-align: center;
     }
 
+    .navbar ul {
+        margin-top: 15px;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+        justify-content: center;
+    }
+
     .navbar ul li {
-        margin: 0 10px;
+        margin: 0 15px 10px; /* Adjust spacing for wrapped items */
+    }
+
+    .hero {
+        padding: 80px 0;
+        min-height: 450px;
     }
 
     .hero h2 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
 
     .hero p {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+    }
+
+    section {
+        padding: 60px 0;
+        margin-bottom: 25px;
     }
 
     section h3 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 35px;
     }
 
     .product-grid {
-        grid-template-columns: 1fr; /* Stack items on small screens */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly smaller min-width for more columns on tablets */
+        gap: 25px;
+    }
+
+    .product-item {
+        padding: 25px;
+    }
+
+    .product-item h4 {
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 480px) {
     .logo a {
-        font-size: 1.5rem;
-    }
-
-    .navbar ul {
-        padding-top: 15px;
+        font-size: 1.7rem;
     }
 
     .navbar ul li {
-        display: block;
-        margin: 10px 0;
+        margin: 5px 10px; /* Tighter spacing on small phones */
     }
 
     .hero {
-        padding: 60px 0;
+        padding: 50px 0;
+        min-height: 350px;
     }
 
     .hero h2 {
@@ -307,19 +442,45 @@ section h3::after {
     }
 
     .hero p {
-        font-size: 0.9rem;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     section {
         padding: 40px 0;
+        margin-bottom: 20px;
     }
 
     section h3 {
         font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Stack items vertically on very small screens */
+        gap: 20px;
+    }
+
+    .product-item {
+        padding: 20px;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .contact-form button.btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    .footer {
+        padding: 20px 0;
     }
 }
